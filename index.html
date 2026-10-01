@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>貪食蛇 Snake</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>貪食蛇</h1>
+      <p class="subtitle">吃滿 <strong>20</strong> 個食物就過關！</p>
+    </header>
+
+    <div class="layout">
+      <!-- 遊戲區 -->
+      <section class="board">
+        <div class="hud">
+          <div class="hud-item">
+            <span class="hud-label">分數</span>
+            <span id="score" class="hud-value">0 / 20</span>
+          </div>
+          <div class="hud-item">
+            <span class="hud-label">時間</span>
+            <span id="time" class="hud-value">0.0 秒</span>
+          </div>
+          <div class="hud-item">
+            <span class="hud-label">本難度最快過關</span>
+            <span id="best" class="hud-value">—</span>
+          </div>
+        </div>
+
+        <div class="canvas-wrap">
+          <canvas id="game" aria-label="貪食蛇遊戲畫面"></canvas>
+          <div id="overlay" class="overlay"></div>
+        </div>
+
+        <div class="buttons">
+          <button id="start-btn" class="btn primary" type="button">開始</button>
+          <button id="restart-btn" class="btn" type="button">重新開始</button>
+        </div>
+      </section>
+
+      <!-- 側邊欄 -->
+      <aside class="panel">
+        <section class="card">
+          <h2>難度</h2>
+          <div class="segmented" role="radiogroup" aria-label="難度">
+            <label><input type="radio" name="difficulty" value="easy"><span>簡單</span></label>
+            <label><input type="radio" name="difficulty" value="normal"><span>普通</span></label>
+            <label><input type="radio" name="difficulty" value="hard"><span>困難</span></label>
+          </div>
+          <p id="lock-hint" class="hint" hidden>遊戲進行中無法切換難度</p>
+          <label class="toggle">
+            <input type="checkbox" id="mute">
+            <span>靜音</span>
+          </label>
+        </section>
+
+        <section class="card">
+          <h2>操作方式</h2>
+          <ul class="keys">
+            <li>
+              <span class="keycaps"><kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd></span>
+              或 <span class="keycaps"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span>
+              移動
+            </li>
+            <li><kbd>空白鍵</kbd> 開始／暫停</li>
+            <li><kbd>R</kbd> 重新開始</li>
+          </ul>
+          <p class="rules">撞到牆壁或自己就失敗。切換分頁或視窗時，遊戲會自動暫停。</p>
+        </section>
+
+        <section class="card">
+          <h2>最佳紀錄</h2>
+          <table class="records">
+            <thead>
+              <tr><th>難度</th><th>最高分</th><th>最快過關</th></tr>
+            </thead>
+            <tbody id="records-body"></tbody>
+          </table>
+          <button id="clear-btn" class="btn small danger" type="button">清除目前難度紀錄</button>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
